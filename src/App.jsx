@@ -1,5 +1,6 @@
 import Navbar from "./components/NavBar/index"
 import './App.css'
+import Events from "../src/components/eventos"
 
 function App() {
 
@@ -7,6 +8,7 @@ function App() {
   return (
     <>
       <Navbar/>
+      <Events/>
     </>
   )
 }
