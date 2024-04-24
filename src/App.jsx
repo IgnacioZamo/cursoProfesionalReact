@@ -1,18 +1,21 @@
+import { useState } from "react"
 import Navbar from "./components/NavBar/index"
 import './App.css'
 import Events from "../src/components/eventos"
 
 function App() {
 
-  const funcionBoton = ()=>{
-    alert("me clickeaste!")
+  const [searchValue, setSearch] = useState("")
+  const handleNavbarSearch = (term) =>{
+    setSearch(term);    
   }
+
+  console.log(searchValue, 10000)
 
   return (
     <>
-      <button onClick={funcionBoton}>clickeame!</button>
-      <Navbar/>
-      <Events/>
+      <Navbar onSearch = {handleNavbarSearch}/>
+      <Events searchValue = {searchValue}/>
     </>
   )
 }
