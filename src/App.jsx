@@ -2,6 +2,7 @@ import { useState } from "react"
 import Navbar from "./components/NavBar/index"
 import './App.css'
 import Events from "../src/components/eventos"
+import SignUp from "./components/SignUp"
 
 function App() {
 
@@ -14,8 +15,9 @@ function App() {
 
   return (
     <>
-      <Navbar onSearch = {handleNavbarSearch}/>
-      <Events searchValue = {searchValue}/>
+      {/* <Navbar onSearch = {handleNavbarSearch}/>
+      <Events searchValue = {searchValue}/> */}
+      <SignUp/>
     </>
   )
 }
