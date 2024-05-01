@@ -1,67 +1,68 @@
-import { useState } from "react";
+//import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 
 
 const SignUp = ()=>{
-    const [name, setName] = useState('')
-    const [age, setAge] = useState('')
-    const [adress, setAdress] = useState('')
-    const [zipcode, setZipcode] = useState('')
-    const [phone, setPhone] = useState('')
+    const {register, handleSubmit, reset, formState: {errors}} = useForm();
+    // const [name, setName] = useState('')
+    // const [age, setAge] = useState('')
+    // const [adress, setAdress] = useState('')
+    // const [zipcode, setZipcode] = useState('')
+    // const [phone, setPhone] = useState('')
 
     const handleClearClick = ()=>{
-        setName('');
-        setAge("");
-        setAdress("");
-        setZipcode("");
-        setPhone("");
+        reset();
+        // setName('');
+        // setAge("");
+        // setAdress("");
+        // setZipcode("");
+        // setPhone("");
 
     }
-    const handleFormSubmit = (e)=>{
-        e.preventDefault();
-        console.log ("submit:", {
-            name,
-            age,
-            zipcode,
-            phone,
-            adress
-        })
-
+    const handleFormSubmit = (data)=>{
+        console.log(data)
+        // console.log ("submit:", {
+        //     name,
+        //     age,
+        //     zipcode,
+        //     phone,
+        //     adress
+        // })
     }
 
 
     return (
-        <form onSubmit={handleFormSubmit}>
+        <form onSubmit={handleSubmit(handleFormSubmit)}>
             <label>
                 Name
-                <input value= {name} onChange={(e) => setName(e.target.value)} required />
+                <input {...register("name", {required:true})} required />
             </label>
             <br />
             <label>
                 Age 
-                <input value= {age} onChange={(e) => setAge(e.target.value)} required />
+                <input {...register("age", {required:true})} required />
             </label>
             <br />
             <label>
                 Adress 
-                <input value= {adress} onChange={(e) => setAdress(e.target.value)} required />
+                <input {...register("adress", {required:true})} required />
             </label>
             <br />
             <label>
                 Zipcode 
-                <input value= {zipcode} onChange={(e) => setZipcode(e.target.value)} required />
+                <input {...register("zipcode", {required:true})} required />
             </label>
             <br />
             <label>
                 Phone 
-                <input value= {phone} onChange={(e) => setPhone(e.target.value)} required />
+                <input {...register("phone", {required:true})} required />
             </label>
             <br />
             <div>
                 <button onClick={handleClearClick}>Clear</button>
                 <button type="submit">Submit</button>
             </div>
-
         </form>
 
     )
@@ -70,3 +71,8 @@ const SignUp = ()=>{
 
 
 export default SignUp
+
+
+//para esto, instale la dependencia de react hook form -> npm install react-hook-form
+
+//Lo demas que está comentado, es como hacer uso del form pero sin la dependencia
