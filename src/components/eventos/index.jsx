@@ -1,9 +1,10 @@
 import EventItem from "./itemEvento"
-import data from "../../data/events.json"
+import useEventsData from "../../hooks/useEventsData"
+
 
 
 const Events = ({searchValue})=>{
-    const {_embedded: {events}} = data;
+    const {events} = useEventsData();
     
     const handleEventItemClick = (id)=>{
         alert(`Evento clickeado: ${id}`)
