@@ -1,15 +1,32 @@
 //este hook es con finalizacion "js" porque no va a retornar un componente, sino una funcion.
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import eventsData from "../data/events.json"
 
 const useEventData = ()=>{
-    const [data] = useState (eventsData)
-    const {_embedded: {events}} = data;
+    const [data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState()
+    // const {_embedded: {events}} = data.current
+    useEffect(()=> {
+        setTimeout(()=>{
+            try{
+                setData(eventsData);
+                setIsLoading(false);
+
+            } catch (error) {
+                setError(error)
+            }
+        }, 3000);
+    }, [])
+
+    console.log(data)
 
     return {
-        events
-    }
+        events: data?._embedded?.events || [],
+        isLoading,
+        error,
+    };
 };
 
 export default useEventData;

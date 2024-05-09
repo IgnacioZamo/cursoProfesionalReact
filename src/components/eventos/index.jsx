@@ -4,7 +4,7 @@ import useEventsData from "../../hooks/useEventsData"
 
 
 const Events = ({searchValue})=>{
-    const {events} = useEventsData();
+    const {events, isLoading, error} = useEventsData();
     
     const handleEventItemClick = (id)=>{
         alert(`Evento clickeado: ${id}`)
@@ -25,8 +25,18 @@ const Events = ({searchValue})=>{
                 onEventClick={handleEventItemClick}
                 id = {eventItem.id}
             /> ))
-    
-    } 
+           
+        } 
+
+        if(error){
+            return <div>Ha ocurrido un error</div>
+        }
+
+        if(isLoading){
+            return <div>Cargando resultados...</div>
+        }
+
+
     return(
         <div>
             {renderEventsComponentes()}
